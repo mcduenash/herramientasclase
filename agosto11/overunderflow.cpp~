@@ -1,0 +1,12 @@
+#include<iostream>
+
+int main(void){
+  float under=1;
+  float over=1;
+  for (int N;N<=100;++N){
+    under/=2;
+    over*=2;
+    std::cout<<N<<"\t"<<under<<"\t"<<over<<"\n";
+  }
+  return 0;
+}

@@ -1,0 +1,9 @@
+Overflow and underflow
+
+
+
+Type	     Underflow		Overflow
+
+float	     150		128
+double	     1074		1023
+long double  16446		16384		
