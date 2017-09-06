@@ -1,0 +1,9 @@
+CXX=g++
+OBJ=2.cpp
+
+2.x:
+	$(CXX) -o $@ $(OBJ)
+
+.PHONY: clean
+clean:
+	rm -f *.o *.out *.x *~
