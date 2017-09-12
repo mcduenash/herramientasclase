@@ -1,0 +1,125 @@
+-----------Notas Eigen------------
+
+Compitación:
+	-I usr/local/include
+	-> Cuando se llama con #include <eigen3/Eigen/...>
+
+Matrices:
+	eigen::MatrixXd A(dimensión, dimensión), 
+
+Vectores:
+	eigen::vectorXd X(dimensión)
+
+	- Se pueden llenar como V(0), v(1), M(0,0), M(0,1)...
+
+Matrices aleatorias:
+	 Las matrices aleatorias se generan, Primero
+	 se declara la matrix(vector) y despues se llama el comando
+	 como
+
+	 eigen::MatrixXd A = eigen::MatrixXd::Random(tamaño, tamaño)
+
+	 equivalente para los vectores. Se puede cambiar la semilla
+	 usando
+
+	 srand(n) -> con n entero.
+
+	 el valor de 0 y 1 generan la misma matrix.
+
+Metodo LU:
+       Comando que se usa para solucionar sistemas de la forma "Ax=b"
+       entonces se tienen que definir la matriz A y el vetor b, y se
+       usa el comando:
+
+       eigen::MatrixXd x = A.fullpivLu().solve(b)
+
+Metodo QR:
+	Comando que se usa para solucionar sistemas de la forma "Ax=b"
+       entonces se tienen que definir la matriz A y el vetor b, y se
+       usa el comando:
+
+	Eigen::MatrixXd x = A.colPivHouseholderQr().solve(b)
+
+--------- Notas Armadillo ---------
+
+Compilación:
+	Para compilar programas en armadillo se puede de sos maneras
+
+	1. Usando las librerias de blas y lapack
+	   - DARMA_DONT_USE_WRAPPER -lopenblas -llapack -std=c++11
+	2. Usando directamente la bandera de armadillo
+	   - larmadillo -std=c++11
+
+	OTRA FORMA:
+	1. Colocar #define ARMA_DONT_USE_WRAPPER antes de #include<armadillo>
+	2. Compilar con -larmadillo -std=c++11
+
+Matrices:
+	arma::mat M(dimensión, dimensión)
+
+Vectores:
+	arma:vec v(dimensión)
+
+Matrices aletorias:
+	 Primero se define una matrix y se usa el comando para
+	 generar la matrix aleatoria (tambien para vectores)
+
+	 arma::mat M = arma::randu<arma::mat>(dimensión, dimensión)
+
+	 Para cambiar la rng de la semilla se utiliza la función
+
+	 arma::arma_rng::set_seed(S) -> con S un valor.
+
+	 los valores de 0 y 1 son distintos para este caso.
+	 
+Metodo LU:
+       A diferencia con eigen el programa negera primero las matrices
+       LU, se le da una matrix para pivotear P, y se le da la matrix
+       A entonces el genera cada una de las matrices como LU = PA
+
+       arma::lu(L, U, P, A) (se recuerda rapido con lupa :v)
+
+       para calcular las soluciones a un sistema de la forma Ax=b
+       se usa el comando
+
+       arma::vec x = solve(trimatu(U), solve(trimatl(L), P*b)
+
+       lo cual quiere decir que L = P*b (solve(trimatl(L), P*b)
+       y que tenemos que UP*b=x.
+
+Metodo QR:
+
+
+
+--------Libreria chrono c++11 ------------
+
+La libreria solo se puede compilar con las versiones de c++11 y mas
+recientes, con lo cual se tiene que agregar la bandera -std=c++11.
+Para medir el tiempo de una funcion se debe prmero decirle a sistema
+que defina dos variables de tiempo como
+
+    std::chrono::time_point<std::chrono::system_clock> start, end
+
+donde se genera un inicio y un final, ahora para medir el proceso
+de la función se tiene que
+
+   start = std::chrono::system_clock::now()
+   FUNCIÓN
+   end =std::chrono::system_clock::now()
+
+y el tiempo total que se demora el sistema en ejecutar la función es
+
+  std::chrono::duration<double> elapsed_seconds = end - start
+
+donde tenemos que el objeto elapsed_seconds() se puede imprimir en
+pantalla.
+
+---------
+
+   
+
+      
+
+	 
+	 
+	
